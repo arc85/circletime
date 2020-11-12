@@ -14,7 +14,8 @@ Depends:
 Imports:
   princurve,
   magrittr,
-  dplyr
+  dplyr,
+  gam
 Suggests:
   Seurat
 Encoding: UTF-8
