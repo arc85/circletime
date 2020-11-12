@@ -36,4 +36,4 @@ plot(pca.x[,1],pca.x[,3])
 cycle.small <- data.frame(pca.x,clusters=marrow@meta.data$tree.ident)
 
 # Save dataset    
-usethis::use_data("DATASET")
+usethis::use_data(cycle.small)
