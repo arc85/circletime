@@ -17,7 +17,8 @@ Imports:
   dplyr,
   gam,
   stats,
-  Matrix
+  Matrix,
+  tibble
 Suggests:
   Seurat,
   ggplot2
