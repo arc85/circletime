@@ -17,5 +17,5 @@ order_clusters_by_time(embedding, clusters, pseudotime)
 data.frame
 }
 \description{
-Derive new cluster identities by progression through pseudotime
+Derive new cluster identities by progression through pseudotime. This function returns a new data.frame with clusters ordered by pseudotemporal progression.
 }
