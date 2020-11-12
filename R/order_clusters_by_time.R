@@ -16,11 +16,11 @@ order_clusters_by_time <- function(embedding,clusters,pseudotime) {
 
   #Reorder clusters by progression through pseudotime
   mean.pseudotime.cluster <- fit.frame %>%
-    group_by(cluster) %>%
-    summarize(mean_lambda=mean(pseudotime))
+    dplyr::group_by(cluster) %>%
+    dplyr::summarize(mean_lambda=mean(pseudotime))
 
   mean.pseudotime.cluster <- mean.pseudotime.cluster %>%
-    arrange(mean_lambda) %>% mutate(new_cluster_id=seq_along(1:nrow(mean.pseudotime.cluster)))
+    dplyr::arrange(mean_lambda) %>% dplyr::mutate(new_cluster_id=seq_along(1:nrow(mean.pseudotime.cluster)))
 
   return(mean.pseudotime.cluster)
 

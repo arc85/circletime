@@ -2,4 +2,4 @@
 
 export(calc_pseudotime)
 export(order_clusters_by_time)
-importFrom(magittr,"%>%")
+importFrom(magrittr,"%>%")

@@ -12,8 +12,9 @@ License: MIT + file LICENSE
 Depends:
   R (>= 3.6.0)
 Imports:
-  tidyverse,
-  princurve
+  princurve,
+  magrittr,
+  dplyr
 Suggests:
   Seurat
 Encoding: UTF-8
