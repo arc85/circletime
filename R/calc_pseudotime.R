@@ -10,6 +10,10 @@
 
 calc_pseudotime <- function(embedding,clusters) {
 
+  if (class(embedding)=="data.frame") {
+    embedding <- as.matrix(embedding)
+  }
+
   row.names <- rownames(embedding)
 
   #Calculate pseudotime
