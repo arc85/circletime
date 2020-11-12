@@ -93,15 +93,16 @@ temporal.genes <- genes_over_time(expr.matrix=genes.small,pseudotime=cycle.small
 
 #View names of output list
 names(temporal.genes)
-names(temporal.genes[[1]])
+names(temporal.genes[[1]])[1:10]
 
 #Bind fit modules into data.frame
 fits.frame <- t(do.call(rbind,temporal.genes[[1]]))
 fits.frame <- data.frame(fits.frame)
 
 #View genes by temporal dynamics
-plot(hclust(dist(t(fits.frame))))
-pheatmap::pheatmap(t(fits.frame),scale="row",show_colnames=FALSE)
+par(cex=0.3)
+plot(hclust(dist(t(fits.frame))),xlab="",ylab="",main="",sub="",axes=FALSE)
+pheatmap::pheatmap(t(fits.frame),scale="row",show_colnames=FALSE,fontsize=6)
 
 #Add pseudotime to data.frame
 fits.frame.time <- fits.frame
@@ -120,6 +121,7 @@ colnames(fits.frames.dynamics) <- c("Pseudotime","Gene","Expression")
 
 #Visuale gene dynamics over time
 ggplot(fits.frames.dynamics,aes(x=Pseudotime,y=Expression,group=Gene,colour=Gene)) +
-  geom_line(size=2)
+  geom_line(size=2) +
+  theme_bw()
 
 ```
