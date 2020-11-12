@@ -19,10 +19,10 @@ p.val <- lapply(expr.list,function(z) {
   p <- summary(tmp)[4][[1]][1,5]
 })
 
-fits <- lapply(Y.list,function(z) {
+fits <- lapply(expr.list,function(z) {
   d <- data.frame(z=z,t=t)
   tmp <- gam::gam(z~gam::lo(t),data=d)
-  predict(tmp,data=d)
+  stats::predict(tmp,data=d)
 })
 
 names(fits) <- names(p.val) <- rownames(expr.matrix)

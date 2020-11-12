@@ -15,7 +15,8 @@ Imports:
   princurve,
   magrittr,
   dplyr,
-  gam
+  gam,
+  stats
 Suggests:
   Seurat
 Encoding: UTF-8
