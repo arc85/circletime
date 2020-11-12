@@ -1,17 +1,17 @@
 ## Code to generate `cycle.small` PCA embedding and clusters
 
-library(Seurat)
-
 # We are going to use single-cell expression data from "A single-cell resolution map of mouse hematopoietic stem and progenitorc cell differentation" by Nestorowa et al, Blood 2016 available here: https://pubmed.ncbi.nlm.nih.gov/27365425/
 
 # This dataset is also utilized in the Seurat vignette (located here: https://satijalab.org/seurat/v3.2/cell_cycle_vignette.html) for regressing out cell cycle effects, which is how I came across it
 
 # We are only going to save PC embeddings from this data as a minimal example. Full analysis will be in a vignette on pkgdown
 
+library(Seurat)
+
 # The first row is a header row, the first column is rownames
-exp.mat <- read.table(file = "~/Desktop/cyclical_pseudotime/cell_cycle_vignette_files/nestorawa_forcellcycle_expressionMatrix.txt", header = TRUE, 
+exp.mat <- read.table(file = "~/Desktop/cyclical_pseudotime/cell_cycle_vignette_files/nestorawa_forcellcycle_expressionMatrix.txt", header = TRUE,
     as.is = TRUE, row.names = 1)
-    
+
 # Define cell cycle genes - loaded with Seurat
 s.genes <- cc.genes$s.genes
 g2m.genes <- cc.genes$g2m.genes
@@ -29,11 +29,10 @@ marrow <- FindClusters(marrow,resolution=1)
 
 marrow <- BuildClusterTree(marrow,reorder=T,reorder.numeric=T)
 
-# Extract PCA embeddings 
-pca.x <- marrow@reductions$pca_cell_cycle@cell.embeddings
-plot(pca.x[,1],pca.x[,3])
+# Extract PCA embeddings
+pca.x <- marrow@reductions$pca_cell_cycle@cell.embeddings[,c(1:3)]
 
 cycle.small <- data.frame(pca.x,clusters=marrow@meta.data$tree.ident)
 
-# Save dataset    
+# Save dataset
 usethis::use_data(cycle.small)
