@@ -35,4 +35,4 @@ pca.x <- marrow@reductions$pca_cell_cycle@cell.embeddings[,c(1:3)]
 cycle.small <- data.frame(pca.x,clusters=as.factor(marrow@meta.data$tree.ident))
 
 # Save dataset
-usethis::use_data(cycle.small,overwrite=T)
+usethis::use_data(cycle.small)
