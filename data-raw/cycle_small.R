@@ -27,12 +27,10 @@ marrow <- RunPCA(marrow,reduction.key="PC_",features=c(s.genes,g2m.genes),reduct
 marrow <- FindNeighbors(marrow,reduction="pca_cell_cycle",dims=1:5)
 marrow <- FindClusters(marrow,resolution=1)
 
-marrow <- BuildClusterTree(marrow,reorder=T,reorder.numeric=T)
-
 # Extract PCA embeddings
 pca.x <- marrow@reductions$pca_cell_cycle@cell.embeddings[,c(1:3)]
 
-cycle.small <- data.frame(pca.x,clusters=as.factor(marrow@meta.data$tree.ident))
+cycle.small <- data.frame(pca.x,clusters=as.factor(marrow@meta.data$RNA_snn_res.1))
 
 # Save dataset
 usethis::use_data(cycle.small)
