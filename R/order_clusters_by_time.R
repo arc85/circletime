@@ -6,7 +6,7 @@
 #' @param clusters factor
 #' @param pseudotime numeric
 #'
-#' @importFrom magittr "%>%"
+#' @importFrom magrittr "%>%"
 #' @return data.frame
 #' @export
 
