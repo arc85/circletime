@@ -124,7 +124,6 @@ temporally associated with the pseudotemporal process.
     fits.frame <- data.frame(fits.frame)
 
     #View genes by temporal dynamics
-    par(cex=2)
     plot(hclust(dist(t(fits.frame))),xlab="",ylab="",main="",sub="",axes=FALSE)
 
 <img src="man/figures/README-genes-over-cycle-1.png" width="100%" />
