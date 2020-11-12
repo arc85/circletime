@@ -2,3 +2,4 @@
 .Rapp.history
 ^data-raw$
 ^README\.Rmd$
+^README\.html$
