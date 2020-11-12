@@ -103,3 +103,67 @@ process. We demonstrate here how to easily do this using
 
 Identify genes associated with cyclical process
 -----------------------------------------------
+
+We can use generalized additive models to evaluate whether genes are
+temporally associated with the pseudotemporal process.
+
+
+    temporal.genes <- genes_over_time(expr.matrix=genes.small,pseudotime=cycle.small.pseudotime$pseudotime)
+    #> Loading required package: Matrix
+
+    #View names of output list
+    names(temporal.genes)
+    #> [1] "expression_fits" "p_values"
+    names(temporal.genes[[1]])
+    #>  [1] "CCNB2"         "HIST1H2BC"     "CTSG"          "ELANE"        
+    #>  [5] "MPO"           "F630028O10RIK" "IGSF6"         "PRTN3"        
+    #>  [9] "MS4A3"         "LY6C2"         "CCNE1"         "CAR2"         
+    #> [13] "FAM132A"       "RRM2"          "RHD"           "CTSE"         
+    #> [17] "RHAG"          "SPHK1"         "BLVRB"         "MIR6236"      
+    #> [21] "UBE2C"         "PLK1"          "CCNB1"         "MKI67"        
+    #> [25] "TOP2A"         "CLDN13"        "HBA-A1"        "TXNIP"        
+    #> [29] "YPEL3"         "GIMAP6"        "IFITM1"        "GCNT2"        
+    #> [33] "FOS"           "DUSP1"         "DNTT"          "IGHM"         
+    #> [37] "JCHAIN"        "FAM64A"        "NUSAP1"        "CDC20"        
+    #> [41] "ARL6IP1"       "CDC25B"        "H2AFX"         "UNG"          
+    #> [45] "MCM6"          "LGALS1"        "TYROBP"        "IRF8"         
+    #> [49] "ADGRG3"        "CCND2"         "MEIS1"         "PTPRCAP"      
+    #> [53] "SLC34A2"       "CD93"          "ADGRG1"        "F2R"          
+    #> [57] "PCLAF"         "PCNA"          "TYMS"          "TK1"          
+    #> [61] "AURKB"         "POLA1"         "UHRF1"         "PBK"          
+    #> [65] "ATAD2"
+
+    #Bind fit modules into data.frame
+    fits.frame <- t(do.call(rbind,temporal.genes[[1]]))
+    fits.frame <- data.frame(fits.frame)
+
+    #View genes by temporal dynamics
+    plot(hclust(dist(t(fits.frame))))
+
+<img src="man/figures/README-genes-over-cycle-1.png" width="100%" />
+
+    pheatmap::pheatmap(t(fits.frame),scale="row",show_colnames=FALSE)
+
+<img src="man/figures/README-genes-over-cycle-2.png" width="100%" />
+
+
+    #Add pseudotime to data.frame
+    fits.frame.time <- fits.frame
+    fits.frame.time$pseudotime <- cycle.small.pseudotime$pseudotime
+
+    #Order gene expression by pseudotime
+    fits.frames.dynamics <- fits.frame.time[,c("PBK","TXNIP","CLDN13","pseudotime")]
+    fits.frames.dynamics <- fits.frames.dynamics[order(fits.frames.dynamics$pseudotime),]
+
+    #Remove pseudotime and melt for plotting
+    fits.frames.dynamics <- fits.frames.dynamics[,-which(colnames(fits.frames.dynamics)=="pseudotime")]
+    fits.frames.dynamics <- apply(fits.frames.dynamics,2,scale)
+    fits.frames.dynamics <- reshape2::melt(fits.frames.dynamics)
+
+    colnames(fits.frames.dynamics) <- c("Pseudotime","Gene","Expression")
+
+    #Visuale gene dynamics over time
+    ggplot(fits.frames.dynamics,aes(x=Pseudotime,y=Expression,group=Gene,colour=Gene)) +
+      geom_line(size=2)
+
+<img src="man/figures/README-genes-over-cycle-3.png" width="100%" />
