@@ -1,0 +1,13 @@
+Package: circletime
+Title: Cyclical pseudotemporal analysis of scRNAseq data
+Version: 0.0.0.9000
+Authors@R:
+    person(given = "Anthony",
+           family = "Cillo",
+           role = c("aut", "cre"),
+           email = "arc85@pitt.edu",
+           comment = c(ORCID = "0000-0002-3213-3129"))
+Description: This package performs pseudotemporal ordering, inference of expression dynamics, and visualization of cyclical biological processes from single-cell RNAseq data. Using a combination of low-dimensional embedding, principal curves, and modeling of gene expression over pseudotime, we can reconstruct cyclical biological processes such as the cell cycle or germinal center B cell reactions. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
