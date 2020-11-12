@@ -13,7 +13,7 @@ calc_pseudotime <- function(embedding,clusters) {
   row.names <- rownames(embedding)
 
   #Calculate pseudotime
-  prin.fit <- princurv::principal_curve(embedding,smoother="periodic_lowess")
+  prin.fit <- princurve::principal_curve(embedding,smoother="periodic_lowess")
 
   #Return data.frame of pseudotime results
   fit.frame <- data.frame(cell_order=prin.fit$ord,pseudotime=prin.fit$lambda)
