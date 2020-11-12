@@ -18,7 +18,9 @@ Imports:
   gam,
   stats,
   Matrix,
-  tibble
+  tibble,
+  pheatmap,
+  reshape2
 Suggests:
   Seurat,
   ggplot2
