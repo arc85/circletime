@@ -5,6 +5,7 @@
 #' @param expr.matrix data.frame
 #' @param pseudotime numeric
 #'
+#' @importFrom gam "lo"
 #' @return list
 #' @export
 

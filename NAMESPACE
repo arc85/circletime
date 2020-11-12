@@ -3,4 +3,5 @@
 export(calc_pseudotime)
 export(genes_over_time)
 export(order_clusters_by_time)
+importFrom(gam,"lo")
 importFrom(magrittr,"%>%")
