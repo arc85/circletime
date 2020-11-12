@@ -12,7 +12,7 @@
 
 order_clusters_by_time <- function(embedding,clusters,pseudotime) {
 
-  fit.frame <- data.frame(embedding,cluster,pseudotime)
+  fit.frame <- data.frame(embedding,clusters,pseudotime)
 
   #Reorder clusters by progression through pseudotime
   mean.pseudotime.cluster <- fit.frame %>%
