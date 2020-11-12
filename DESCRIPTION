@@ -16,7 +16,8 @@ Imports:
   magrittr,
   dplyr,
   gam,
-  stats
+  stats,
+  Matrix
 Suggests:
   Seurat
 Encoding: UTF-8
