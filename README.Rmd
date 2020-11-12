@@ -100,7 +100,8 @@ fits.frame <- t(do.call(rbind,temporal.genes[[1]]))
 fits.frame <- data.frame(fits.frame)
 
 #View genes by temporal dynamics
-plot(hclust(dist(t(fits.frame))),xlab="",ylab="",main="",sub="",axes=FALSE,cex=0.5)
+par(cex=0.8)
+plot(hclust(dist(t(fits.frame))),xlab="",ylab="",main="",sub="",axes=FALSE)
 pheatmap::pheatmap(t(fits.frame),scale="row",show_colnames=FALSE,fontsize=6)
 
 #Add pseudotime to data.frame
